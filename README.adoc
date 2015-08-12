@@ -1,5 +1,34 @@
 = Neo4j Movies Example Application - The Python Version
 
+We assume that you have installed neo4j:
+
+Download from source: 
+
+Or Ubuntu/Debian with apt-get:
+
+[source]
+----
+$ apt-get install neo4j
+----
+
+Or Mac OSX with Homebrew: 
+
+[source]
+----
+$ brew install neo4j
+----
+
+We also assume that, once neo4j installed on your machine, you have started neo4j:
+
+[source]
+----
+$ neo4j start
+----
+
+And visited localhost:7474/browser to create the "neo4j" user and went through the mandatory update of the default password "neo4j" with a PASSWORD OF YOUR CHOICE (you'll need it later !!!)
+
+We also assume that you have imported the Movie Graph database that is shiped whith the neo4j package which can be done on "localhost:7474/browser" inside the "Jump into code" and then the "Movie Graph" section (then following the instructions).
+
 First get yourself setup with link:http://docs.python-guide.org/en/latest/dev/virtualenvs/[Virtual Env] so we don't break any other Python stuff you have on your machine. After you've got that installed let's setup an environment for our app:
 
 [source]
@@ -23,6 +52,26 @@ The next step is to install the dependencies for the app:
 Successfully installed py2neo
 Cleaning up...
 ----
+
+Then, modify the example.py line 9
+
+[source]
+----
+#!/usr/bin/env python
+
+
+import json
+
+from bottle import get, run, request, response, static_file
+from py2neo import Graph, authenticate
+
+authenticate("localhost:7474", "neo4j","WRITE_YOUR_PASSWORD_HERE")
+
+graph = Graph()
+
+[...]
+----
+
 
 And finally let's start up a Bottle web server:
 

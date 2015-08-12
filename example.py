@@ -4,8 +4,9 @@
 import json
 
 from bottle import get, run, request, response, static_file
-from py2neo import Graph
+from py2neo import Graph, authenticate
 
+authenticate("localhost:7474", "neo4j","WRITE_YOUR_PASSWORD_HERE")
 
 graph = Graph()
 
