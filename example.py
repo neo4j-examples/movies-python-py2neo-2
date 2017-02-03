@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 
-
+import sys
 import json
 
 from bottle import get, run, request, response, static_file
-from py2neo import Graph
+from py2neo import Graph, authenticate
 
+USERNAME = sys.argv[1]
+PASSWORD = sys.argv[2]
+
+authenticate("localhost:7474", USERNAME, PASSWORD)
 
 graph = Graph("http://username:<password>@localhost:7474")
 
